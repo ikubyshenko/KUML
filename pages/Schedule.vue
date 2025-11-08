@@ -3,7 +3,13 @@
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-cyan-100 overflow-hidden w-full">
       <!-- Background Image -->
-
+      <div class="absolute inset-0 z-0 w-full h-full">
+        <img 
+          src="/assets/images/bgULK.png" 
+          alt="Schedule Background"
+          class="w-full h-full object-cover opacity-10"
+        />
+      </div>
       
       <!-- Animated Background Elements -->
       <div class="absolute inset-0 z-0 w-full h-full">
