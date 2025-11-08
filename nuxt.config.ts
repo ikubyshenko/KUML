@@ -1,0 +1,8 @@
+// https://nuxt.com/docs/api/configuration/nuxt-config
+export default defineNuxtConfig({
+  compatibilityDate: '2025-07-15',
+  tres: { glsl:true ,devtools: true },
+  devtools: { enabled: true },
+  modules: ['@nuxtjs/tailwindcss', '@tresjs/nuxt']
+})
+
