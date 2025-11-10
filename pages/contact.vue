@@ -103,7 +103,7 @@
                 class="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg text-lg flex items-center gap-3"
               >
                 <span></span>
-                Вступить в группу WhatsApp
+                Присоединиться к чату
               </a>
             </div>
           </div>
