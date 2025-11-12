@@ -210,7 +210,7 @@ definePageMeta({
   middleware: 'admin-auth'
 })
 
-// ВАШ RENDER URL
+// ЗАМЕНИТЕ НА ВАШ НОВЫЙ RENDER URL!
 const API_URL = 'https://kumlbackend.onrender.com'
 
 const schedule = ref([])
@@ -255,20 +255,13 @@ const getWeekBgColor = (weekNumber) => {
 // Загрузка расписания
 const loadSchedule = async () => {
   try {
-    console.log('🔄 Loading schedule from admin...')
     const response = await fetch(`${API_URL}/weeks`)
-    
     if (response.ok) {
       const data = await response.json()
       schedule.value = data
-      console.log('✅ Schedule loaded in admin:', data.length, 'weeks')
-    } else {
-      console.error('Ошибка загрузки расписания')
-      formError.value = 'Ошибка загрузки расписания'
     }
   } catch (error) {
-    console.error('Ошибка:', error)
-    formError.value = 'Ошибка подключения к серверу'
+    console.error('Error:', error)
   } finally {
     loading.value = false
   }
@@ -292,14 +285,13 @@ const deleteWeek = async (weekId) => {
     })
 
     if (response.ok) {
-      await loadSchedule() // Перезагружаем список
+      await loadSchedule()
     } else {
-      const errorData = await response.json()
-      alert('Ошибка при удалении недели: ' + (errorData.error || 'Unknown error'))
+      alert('Ошибка при удалении недели')
     }
   } catch (error) {
     console.error('Ошибка:', error)
-    alert('Ошибка при удалении недели: ' + error.message)
+    alert('Ошибка при удалении недели')
   }
 }
 
@@ -324,7 +316,7 @@ const submitForm = async () => {
     })
 
     if (response.ok) {
-      await loadSchedule() // Перезагружаем список
+      await loadSchedule()
       cancelForm()
     } else {
       const errorData = await response.json()

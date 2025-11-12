@@ -53,29 +53,6 @@
           >
             Админ панель
           </button>
-          <button 
-            @click="forceReload"
-            class="bg-green-600 hover:bg-green-700 text-white px-6 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
-          >
-            🔄 Обновить данные
-          </button>
-        </div>
-
-        <!-- Debug Info -->
-        <div class="mt-6 text-sm scroll-animate">
-          <div class="bg-white bg-opacity-50 rounded-lg p-4 max-w-md mx-auto">
-            <p class="font-semibold">Отладочная информация:</p>
-            <p>Backend: {{ API_URL }}</p>
-            <p>Статус: {{ loading ? 'Загрузка...' : schedule.length > 0 ? 'Успешно' : 'Ошибка' }}</p>
-            <p>Загружено недель: {{ schedule.length }}</p>
-            <p v-if="errorMessage" class="text-red-600">Ошибка: {{ errorMessage }}</p>
-            <button 
-              @click="manualCheck"
-              class="mt-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-xs"
-            >
-              Проверить подключение
-            </button>
-          </div>
         </div>
       </div>
 
@@ -207,13 +184,7 @@
               <span class="text-yellow-600 text-2xl">⚠️</span>
             </div>
             <h3 class="text-xl font-semibold text-gray-900 mb-2">Расписание недоступно</h3>
-            <p class="text-gray-600 mb-4">Попробуйте обновить страницу позже</p>
-            <button 
-              @click="loadSchedule"
-              class="bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors"
-            >
-              Попробовать снова
-            </button>
+            <p class="text-gray-600">Попробуйте обновить страницу позже</p>
           </div>
         </div>
       </div>
@@ -249,12 +220,9 @@ const scheduleSection = ref(null)
 const pageTop = ref(null)
 const schedule = ref([])
 const loading = ref(true)
-const errorMessage = ref('')
 
-// ВАШ RENDER URL
+// ЗАМЕНИТЕ НА ВАШ НОВЫЙ RENDER URL!
 const API_URL = 'https://kumlbackend.onrender.com'
-
-console.log('🚀 Frontend started, API_URL:', API_URL)
 
 // Проверка админского доступа
 const isAdmin = computed(() => {
@@ -302,108 +270,40 @@ const sortedSchedule = computed(() => {
   return [...schedule.value].sort((a, b) => a.number - b.number)
 })
 
-// Тестирование подключения к бэкенду
-const testBackendConnection = async () => {
-  try {
-    console.log('🔍 Testing backend connection to:', API_URL)
-    
-    // Тест основного эндпоинта
-    const testResponse = await fetch(API_URL)
-    console.log('🏠 Root endpoint status:', testResponse.status)
-    
-    if (testResponse.ok) {
-      const rootData = await testResponse.json()
-      console.log('🏠 Root response:', rootData)
-    }
-    
-    // Тест эндпоинта с расписанием
-    const weeksResponse = await fetch(`${API_URL}/weeks`)
-    console.log('📊 Weeks endpoint status:', weeksResponse.status)
-    
-    if (!weeksResponse.ok) {
-      throw new Error(`HTTP error! status: ${weeksResponse.status}`)
-    }
-    
-    const data = await weeksResponse.json()
-    console.log('✅ Weeks data received:', data)
-    
-    return data
-  } catch (error) {
-    console.error('❌ Backend connection test failed:', error)
-    throw error
-  }
-}
-
 // Загрузка расписания с бэкенда
 const loadSchedule = async () => {
   try {
     loading.value = true
-    errorMessage.value = ''
-    console.log('🔄 Starting schedule load from:', API_URL)
+    const response = await fetch(`${API_URL}/weeks`)
     
-    const data = await testBackendConnection()
-    schedule.value = data
-    
-    console.log('✅ Schedule loaded successfully:', data.length, 'weeks')
-    
+    if (response.ok) {
+      const data = await response.json()
+      schedule.value = data
+    }
   } catch (error) {
-    console.error('❌ Error loading schedule:', error)
-    errorMessage.value = `Ошибка загрузки: ${error.message}`
+    console.error('Error loading schedule:', error)
     schedule.value = []
   } finally {
     loading.value = false
   }
 }
 
-const forceReload = async () => {
-  console.log('🔄 Force reloading schedule...')
-  await loadSchedule()
-}
-
-// Ручная проверка из консоли браузера
-const manualCheck = async () => {
-  console.log('🔧 Manual check started...')
-  await testBackendConnection()
-}
-
 onMounted(async () => {
-  console.log('📱 Page mounted, starting initialization...')
-  
-  // Скролл наверх при загрузке
   scrollToTop()
-
-  // Загружаем расписание
   await loadSchedule()
 
-  // Инициализация анимаций при скролле
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  }
-
+  // Анимации при скролле
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('animate-in')
       }
     })
-  }, observerOptions)
+  }, { threshold: 0.1 })
 
   document.querySelectorAll('.scroll-animate').forEach(el => {
     observer.observe(el)
   })
-  
-  // Делаем функции доступными глобально для отладки
-  if (process.client) {
-    window.debugSchedule = {
-      loadSchedule,
-      testBackendConnection,
-      manualCheck,
-      getAPI_URL: () => API_URL,
-      getSchedule: () => schedule.value
-    }
-    console.log('🔧 Debug functions available: window.debugSchedule')
-  }
 })
 
 useSeoMeta({
