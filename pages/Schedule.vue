@@ -141,7 +141,7 @@
         </div>
 
         <!-- Mobile Schedule Cards -->
-        <div v-else-if="schedule.length > 0" class="lg:hidden space-y-6">
+        <div v-else-if="schedule.length > 0" class="lg:hidden space-y-4">
           <div 
             v-for="week in sortedSchedule" 
             :key="week.id"
@@ -162,7 +162,7 @@
             <!-- Theme -->
             <div class="mb-4">
               <h3 class="text-xl font-bold text-gray-900 mb-2">{{ week.theme }}</h3>
-              <p class="text-gray-600">{{ week.description }}</p>
+              <p class="text-gray-600 text-sm leading-relaxed">{{ week.description }}</p>
             </div>
 
             <!-- Practice -->
@@ -171,7 +171,7 @@
                 <div class="w-8 h-8 bg-cyan-100 rounded-full flex items-center justify-center flex-shrink-0">
                   <span class="text-cyan-600">🛠️</span>
                 </div>
-                <span class="text-gray-800 font-medium">{{ week.practice }}</span>
+                <span class="text-gray-800 font-medium text-sm">{{ week.practice }}</span>
               </div>
             </div>
           </div>
@@ -221,7 +221,7 @@ const pageTop = ref(null)
 const schedule = ref([])
 const loading = ref(true)
 
-// ЗАМЕНИТЕ НА ВАШ НОВЫЙ RENDER URL!
+// ЗАМЕНИТЕ НА ВАШ RENDER URL!
 const API_URL = 'https://kumlbackend.onrender.com'
 
 // Проверка админского доступа
