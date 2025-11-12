@@ -92,7 +92,7 @@
 
             <div class="flex flex-col items-center space-y-6">
               <div class="bg-white rounded-2xl p-8 shadow-lg border border-green-200">
-                <img src="./whatsappqr.png" alt="WhatsApp" class="w-32 h-32 object-contain">
+                <img src="/whatsappqr.png" alt="WhatsApp" class="w-32 h-32 object-contain">
               </div>
               <p class="text-gray-500 text-center">Присоединяйтесь к нашему сообществу</p>
               
