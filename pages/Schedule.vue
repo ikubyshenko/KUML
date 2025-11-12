@@ -88,52 +88,89 @@
           </div>
         </div>
 
-        <!-- Schedule Table - Always visible on all screen sizes -->
-        <div v-else-if="schedule.length > 0" class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-4 sm:p-6 lg:p-8 shadow-2xl overflow-x-auto">
-          <!-- Table Header -->
-          <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 sm:gap-4 mb-4 sm:mb-6 px-2 sm:px-6 min-w-[600px]">
-            <div class="col-span-1 sm:col-span-2 text-center scroll-animate">
-              <span class="text-cyan-600 font-semibold text-sm sm:text-lg">НЕДЕЛЯ</span>
+        <!-- Schedule Table - Fully responsive without horizontal scroll -->
+        <div v-else-if="schedule.length > 0" class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-4 sm:p-6 lg:p-8 shadow-2xl">
+          <!-- Table Header - Hidden on mobile, visible on desktop -->
+          <div class="hidden lg:grid lg:grid-cols-12 gap-4 mb-6 px-6">
+            <div class="col-span-2 text-center scroll-animate">
+              <span class="text-cyan-600 font-semibold text-lg">НЕДЕЛЯ</span>
             </div>
-            <div class="col-span-1 sm:col-span-6 scroll-animate">
-              <span class="text-cyan-600 font-semibold text-sm sm:text-lg">ТЕМА И ОПИСАНИЕ</span>
+            <div class="col-span-6 scroll-animate">
+              <span class="text-cyan-600 font-semibold text-lg">ТЕМА И ОПИСАНИЕ</span>
             </div>
-            <div class="col-span-1 sm:col-span-4 scroll-animate">
-              <span class="text-cyan-600 font-semibold text-sm sm:text-lg">ПРАКТИЧЕСКАЯ РАБОТА</span>
+            <div class="col-span-4 scroll-animate">
+              <span class="text-cyan-600 font-semibold text-lg">ПРАКТИЧЕСКАЯ РАБОТА</span>
             </div>
           </div>
 
           <!-- Table Content -->
-          <div class="space-y-3 sm:space-y-4 min-w-[600px]">
+          <div class="space-y-4 sm:space-y-6">
             <div 
               v-for="week in sortedSchedule" 
               :key="week.id"
               class="bg-white rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-l-4 scroll-animate"
               :class="getWeekBorderColor(week.number)"
             >
-              <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 sm:gap-4 items-center">
+              <!-- Mobile Layout -->
+              <div class="lg:hidden space-y-4">
+                <!-- Week Header for Mobile -->
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 rounded-full text-white font-bold flex items-center justify-center shadow-md text-lg"
+                      :class="getWeekBgColor(week.number)">
+                      {{ week.number }}
+                    </div>
+                    <div>
+                      <span class="text-cyan-600 font-semibold block">Неделя {{ week.number }}</span>
+                      <span class="text-gray-500 text-sm">Тема обучения</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Theme & Description for Mobile -->
+                <div>
+                  <h3 class="text-lg font-bold text-gray-900 mb-2">{{ week.theme }}</h3>
+                  <p class="text-gray-600 text-base leading-relaxed">{{ week.description }}</p>
+                </div>
+
+                <!-- Practice for Mobile -->
+                <div class="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl p-4 border border-cyan-200">
+                  <div class="flex items-start space-x-3">
+                    <div class="w-10 h-10 bg-cyan-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <span class="text-cyan-600 text-lg">🛠️</span>
+                    </div>
+                    <div>
+                      <span class="text-cyan-600 font-semibold text-sm block mb-1">Практическая работа:</span>
+                      <span class="text-gray-800 font-medium text-base">{{ week.practice }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Desktop Layout -->
+              <div class="hidden lg:grid lg:grid-cols-12 gap-4 items-center">
                 <!-- Week Number -->
-                <div class="col-span-1 sm:col-span-2 text-center">
-                  <div class="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full text-white font-bold text-lg sm:text-xl shadow-lg"
+                <div class="col-span-2 text-center">
+                  <div class="inline-flex items-center justify-center w-16 h-16 rounded-full text-white font-bold text-xl shadow-lg"
                     :class="getWeekBgColor(week.number)">
                     {{ week.number }}
                   </div>
                 </div>
 
                 <!-- Theme & Description -->
-                <div class="col-span-1 sm:col-span-6">
-                  <h3 class="text-base sm:text-lg lg:text-xl font-bold text-gray-900 mb-1 sm:mb-2">{{ week.theme }}</h3>
-                  <p class="text-gray-600 text-sm sm:text-base lg:text-lg leading-relaxed">{{ week.description }}</p>
+                <div class="col-span-6">
+                  <h3 class="text-xl font-bold text-gray-900 mb-2">{{ week.theme }}</h3>
+                  <p class="text-gray-600 text-lg">{{ week.description }}</p>
                 </div>
 
                 <!-- Practice -->
-                <div class="col-span-1 sm:col-span-4">
-                  <div class="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl p-3 sm:p-4 border border-cyan-200">
-                    <div class="flex items-center space-x-2 sm:space-x-3">
-                      <div class="w-8 h-8 sm:w-10 sm:h-10 bg-cyan-100 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span class="text-cyan-600 text-sm sm:text-lg">🛠️</span>
+                <div class="col-span-4">
+                  <div class="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl p-4 border border-cyan-200">
+                    <div class="flex items-center space-x-3">
+                      <div class="w-10 h-10 bg-cyan-100 rounded-full flex items-center justify-center">
+                        <span class="text-cyan-600 text-lg">🛠️</span>
                       </div>
-                      <span class="text-gray-800 font-medium text-sm sm:text-base lg:text-lg break-words">{{ week.practice }}</span>
+                      <span class="text-gray-800 font-medium text-lg">{{ week.practice }}</span>
                     </div>
                   </div>
                 </div>
@@ -293,24 +330,5 @@ section {
   width: 100vw;
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
-}
-
-/* Custom scrollbar for horizontal scrolling on small screens */
-.overflow-x-auto::-webkit-scrollbar {
-  height: 8px;
-}
-
-.overflow-x-auto::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 4px;
-}
-
-.overflow-x-auto::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 4px;
-}
-
-.overflow-x-auto::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
 }
 </style>
