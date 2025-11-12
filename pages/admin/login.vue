@@ -3,10 +3,24 @@
     <div class="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
       <div class="text-center mb-8">
         <h1 class="text-3xl font-bold text-gray-900 mb-2">Админ Панель</h1>
-        <p class="text-gray-600">Введите пароль для доступа</p>
+        <p class="text-gray-600">Введите логин и пароль для доступа</p>
       </div>
 
       <form @submit.prevent="handleLogin" class="space-y-6">
+        <div>
+          <label for="username" class="block text-sm font-medium text-gray-700 mb-2">
+            Логин
+          </label>
+          <input
+            id="username"
+            v-model="username"
+            type="text"
+            required
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
+            placeholder="Введите логин"
+          />
+        </div>
+
         <div>
           <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
             Пароль
@@ -40,28 +54,39 @@
 
 <script setup>
 definePageMeta({
-  layout: false
+  layout: false,
+  middleware: 'admin-auth'
 })
 
+const username = ref('')
 const password = ref('')
 const error = ref('')
 const loading = ref(false)
-const PASSWORD = '1234567890'
+
+const ADMIN_CREDENTIALS = {
+  username: 'admin',
+  password: '1234567890'
+}
 
 const handleLogin = async () => {
   loading.value = true
   error.value = ''
 
-  // Имитация задержки для лучшего UX
   await new Promise(resolve => setTimeout(resolve, 1000))
 
-  if (password.value === PASSWORD) {
+  if (username.value === ADMIN_CREDENTIALS.username && password.value === ADMIN_CREDENTIALS.password) {
     localStorage.setItem('admin-authenticated', 'true')
     await navigateTo('/admin')
   } else {
-    error.value = 'Неверный пароль'
+    error.value = 'Неверный логин или пароль'
   }
 
   loading.value = false
 }
+
+onMounted(() => {
+  if (process.client && localStorage.getItem('admin-authenticated') === 'true') {
+    navigateTo('/admin')
+  }
+})
 </script>
