@@ -16,7 +16,7 @@
       <h1 class="text-7xl sm:text-8xl font-bold text-cyan-600 mb-6 animate-pulse">404</h1>
       <p class="text-2xl sm:text-3xl text-gray-800 font-semibold mb-4">Страница не найдена</p>
       <p class="text-lg text-gray-600 mb-8">
-        Возможно, вы перешли по неверной ссылке или страница была удалена.
+        Не пиши ничего в адресной строке, все и так есть на сайте! Лучше вернись на главную страницу.
       </p>
       <router-link
         to="/"
