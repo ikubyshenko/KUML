@@ -66,7 +66,7 @@
 
             <div class="flex flex-col items-center space-y-6">
               <div class="bg-white rounded-2xl p-6 shadow-lg border border-blue-200">
-                <img src="/assets/images/telegramqr.jpg" alt="Telegram QR Code" class="w-48 h-48 object-cover rounded-xl">
+                <img src="/assets/images/telegram.svg" alt="Telegram QR Code" class="w-32 h-32 object-cover rounded-xl">
               </div>
               <p class="text-gray-500 text-center">Отсканируйте QR-код для быстрого перехода</p>
               
@@ -92,7 +92,7 @@
 
             <div class="flex flex-col items-center space-y-6">
               <div class="bg-white rounded-2xl p-8 shadow-lg border border-green-200">
-                <img src="/assets/whatsappqr.jpg" alt="WhatsApp" class="w-32 h-32 object-contain">
+                <img src="/assets/images/whatsapp.svg" alt="WhatsApp" class="w-32 h-32 object-contain">
               </div>
               <p class="text-gray-500 text-center">Присоединяйтесь к нашему сообществу</p>
               
@@ -177,6 +177,10 @@ onMounted(() => {
   document.querySelectorAll('.scroll-animate').forEach(el => {
     observer.observe(el)
   })
+})
+useSeoMeta({
+  title: 'Связь с нами - AI CENTER - Kozybaev University',
+  description: 'Свяжитесь с нами для вопросов, идей и присоединения к нашему сообществу в AI CENTER.',
 })
 </script>
 

@@ -122,8 +122,11 @@ onMounted(() => {
     observer.observe(el)
   })
 })
+useSeoMeta({
+  title: 'Главная - AI CENTER - Kozybaev University',
+  description: 'AI CENTER - мир, где технологии становятся продолжением твоего разума.',
+})
 </script>
-
 <style scoped>
 .scroll-animate {
   opacity: 0;
