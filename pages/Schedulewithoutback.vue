@@ -38,20 +38,13 @@
           10 недель интенсивного обучения от основ веба до полноценных AI-приложений
         </p>
 
-        <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center scroll-animate">
+        <!-- CTA Button -->
+        <div class="scroll-animate">
           <button 
             @click="scrollToSchedule"
             class="bg-cyan-600 hover:bg-cyan-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
           >
             Программа обучения
-          </button>
-          <button 
-            v-if="isAdmin"
-            @click="navigateTo('/admin')"
-            class="bg-gray-600 hover:bg-gray-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
-          >
-            Админ панель
           </button>
         </div>
       </div>
@@ -80,16 +73,8 @@
           </p>
         </div>
 
-        <!-- Loading State -->
-        <div v-if="loading" class="text-center py-12">
-          <div class="inline-flex items-center justify-center space-x-3">
-            <div class="w-8 h-8 border-4 border-cyan-600 border-t-transparent rounded-full animate-spin"></div>
-            <span class="text-gray-600 text-lg">Загрузка расписания...</span>
-          </div>
-        </div>
-
         <!-- Desktop Schedule Table -->
-        <div v-else-if="schedule.length > 0" class="hidden lg:block bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-8 shadow-2xl">
+        <div class="hidden lg:block bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-8 shadow-2xl">
           <div class="grid grid-cols-12 gap-4 mb-6 px-6">
             <div class="col-span-2 text-center scroll-animate">
               <span class="text-cyan-600 font-semibold text-lg">НЕДЕЛЯ</span>
@@ -104,16 +89,24 @@
 
           <div class="space-y-4">
             <div 
-              v-for="week in sortedSchedule" 
-              :key="week.id"
+              v-for="(week, index) in schedule" 
+              :key="week.number"
               class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-l-4 scroll-animate"
-              :class="getWeekBorderColor(week.number)"
+              :class="{
+                'border-cyan-500': week.number % 3 === 1,
+                'border-blue-500': week.number % 3 === 2,
+                'border-indigo-500': week.number % 3 === 0
+              }"
             >
               <div class="grid grid-cols-12 gap-4 items-center">
                 <!-- Week Number -->
                 <div class="col-span-2 text-center">
                   <div class="inline-flex items-center justify-center w-16 h-16 rounded-full text-white font-bold text-xl shadow-lg"
-                    :class="getWeekBgColor(week.number)">
+                    :class="{
+                      'bg-cyan-500': week.number % 3 === 1,
+                      'bg-blue-500': week.number % 3 === 2,
+                      'bg-indigo-500': week.number % 3 === 0
+                    }">
                     {{ week.number }}
                   </div>
                 </div>
@@ -141,18 +134,26 @@
         </div>
 
         <!-- Mobile Schedule Cards -->
-        <div v-else-if="schedule.length > 0" class="lg:hidden space-y-6">
+        <div class="lg:hidden space-y-6">
           <div 
-            v-for="week in sortedSchedule" 
-            :key="week.id"
+            v-for="week in schedule" 
+            :key="week.number"
             class="bg-gradient-to-br from-white to-blue-50 rounded-2xl p-6 shadow-lg border-l-4 scroll-animate"
-            :class="getWeekBorderColor(week.number)"
+            :class="{
+              'border-cyan-500': week.number % 3 === 1,
+              'border-blue-500': week.number % 3 === 2,
+              'border-indigo-500': week.number % 3 === 0
+            }"
           >
             <!-- Week Header -->
             <div class="flex items-center justify-between mb-4">
               <div class="flex items-center space-x-3">
                 <div class="w-12 h-12 rounded-full text-white font-bold flex items-center justify-center shadow-md"
-                  :class="getWeekBgColor(week.number)">
+                  :class="{
+                    'bg-cyan-500': week.number % 3 === 1,
+                    'bg-blue-500': week.number % 3 === 2,
+                    'bg-indigo-500': week.number % 3 === 0
+                  }">
                   {{ week.number }}
                 </div>
                 <span class="text-cyan-600 font-semibold">Неделя {{ week.number }}</span>
@@ -174,17 +175,6 @@
                 <span class="text-gray-800 font-medium">{{ week.practice }}</span>
               </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Empty State -->
-        <div v-else class="text-center py-12">
-          <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-8 max-w-md mx-auto">
-            <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span class="text-yellow-600 text-2xl">⚠️</span>
-            </div>
-            <h3 class="text-xl font-semibold text-gray-900 mb-2">Расписание недоступно</h3>
-            <p class="text-gray-600">Попробуйте обновить страницу позже</p>
           </div>
         </div>
       </div>
@@ -214,22 +204,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const scheduleSection = ref(null)
 const pageTop = ref(null)
-const schedule = ref([])
-const loading = ref(true)
-
-const API_URL = 'https://kumlbackend.onrender.com'
-
-// Проверка админского доступа (простая проверка по localStorage)
-const isAdmin = computed(() => {
-  if (process.client) {
-    return localStorage.getItem('admin-authenticated') === 'true'
-  }
-  return false
-})
 
 const scrollToSchedule = () => {
   scheduleSection.value?.scrollIntoView({ 
@@ -238,63 +216,79 @@ const scrollToSchedule = () => {
   })
 }
 
+// Функция для скролла наверх при загрузке
 const scrollToTop = () => {
   if (process.client) {
     window.scrollTo(0, 0)
   }
 }
 
-// Получение цвета границы для недели
-const getWeekBorderColor = (weekNumber) => {
-  const num = weekNumber % 3
-  return {
-    'border-cyan-500': num === 1,
-    'border-blue-500': num === 2,
-    'border-indigo-500': num === 0
+const schedule = [
+  {
+    number: 1,
+    theme: "Введение в веб",
+    description: "HTML, CSS, JavaScript основы",
+    practice: "Форма + отправка запроса"
+  },
+  {
+    number: 2,
+    theme: "Основы PHP и REST API",
+    description: "Серверная разработка и API",
+    practice: "Простейший сервер"
+  },
+  {
+    number: 3,
+    theme: "CRUD и Базы данных",
+    description: "Создание, чтение, обновление, удаление",
+    practice: "CRUD-приложение"
+  },
+  {
+    number: 4,
+    theme: "Архитектура данных",
+    description: "Проектирование структур данных",
+    practice: "Импорт CSV"
+  },
+  {
+    number: 5,
+    theme: "Введение в Machine Learning",
+    description: "Основы машинного обучения",
+    practice: "Классификатор отзывов"
+  },
+  {
+    number: 6,
+    theme: "Интеграция модели",
+    description: "Соединение ML с веб-приложением",
+    practice: "Подключение модели к API"
+  },
+  {
+    number: 7,
+    theme: "Веб-интерфейс для нейронной сети",
+    description: "Создание UI для AI-моделей",
+    practice: "Вывод предсказаний"
+  },
+  {
+    number: 8,
+    theme: "Проектирование ИИ-приложений",
+    description: "Архитектура AI-проектов",
+    practice: "Работа в командах"
+  },
+  {
+    number: 9,
+    theme: "Разработка и тестирование",
+    description: "Финальная стадия разработки",
+    practice: "Отладка и подготовка"
+  },
+  {
+    number: 10,
+    theme: "Презентация проектов",
+    description: "Демонстрация результатов",
+    practice: "Защита проектов"
   }
-}
+]
 
-// Получение цвета фона для недели
-const getWeekBgColor = (weekNumber) => {
-  const num = weekNumber % 3
-  return {
-    'bg-cyan-500': num === 1,
-    'bg-blue-500': num === 2,
-    'bg-indigo-500': num === 0
-  }
-}
-
-// Сортировка расписания по номеру недели
-const sortedSchedule = computed(() => {
-  return [...schedule.value].sort((a, b) => a.number - b.number)
-})
-
-// Загрузка расписания с бэкенда
-const loadSchedule = async () => {
-  try {
-    loading.value = true
-    const response = await fetch(`${API_URL}/weeks`)
-    if (response.ok) {
-      const data = await response.json()
-      schedule.value = data
-    } else {
-      console.error('Ошибка загрузки расписания')
-      schedule.value = []
-    }
-  } catch (error) {
-    console.error('Ошибка:', error)
-    schedule.value = []
-  } finally {
-    loading.value = false
-  }
-}
-
-onMounted(async () => {
+onMounted(() => {
   // Скролл наверх при загрузке
   scrollToTop()
-
-  // Загружаем расписание
-  await loadSchedule()
 
   // Инициализация анимаций при скролле
   const observerOptions = {
@@ -313,6 +307,29 @@ onMounted(async () => {
   // Наблюдаем за всеми элементами с классом scroll-animate
   document.querySelectorAll('.scroll-animate').forEach(el => {
     observer.observe(el)
+  })
+
+  // Предотвращаем скролл body когда открыт сайдбар
+  const checkSidebar = () => {
+    const sidebar = document.querySelector('[class*="translate-x-0"]')
+    if (sidebar) {
+      document.body.style.overflow = 'hidden'
+      document.body.style.position = 'fixed'
+      document.body.style.width = '100%'
+    } else {
+      document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.width = ''
+    }
+  }
+
+  // Наблюдаем за изменениями в DOM для сайдбара
+  const observerSidebar = new MutationObserver(checkSidebar)
+  observerSidebar.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ['class']
   })
 })
 
@@ -338,5 +355,12 @@ section {
   width: 100vw;
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
+}
+
+/* Фиксируем body когда открыт сайдбар */
+body.sidebar-open {
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100% !important;
 }
 </style>
