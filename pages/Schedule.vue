@@ -53,6 +53,18 @@
           >
             Админ панель
           </button>
+          <button 
+            @click="forceReload"
+            class="bg-green-600 hover:bg-green-700 text-white px-6 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
+          >
+            🔄 Обновить данные
+          </button>
+        </div>
+
+        <!-- Debug Info -->
+        <div class="mt-6 text-sm text-gray-500">
+          <p>Backend: {{ API_URL }}</p>
+          <p>Загружено недель: {{ schedule.length }}</p>
         </div>
       </div>
 
@@ -184,7 +196,13 @@
               <span class="text-yellow-600 text-2xl">⚠️</span>
             </div>
             <h3 class="text-xl font-semibold text-gray-900 mb-2">Расписание недоступно</h3>
-            <p class="text-gray-600">Попробуйте обновить страницу позже</p>
+            <p class="text-gray-600 mb-4">Попробуйте обновить страницу позже</p>
+            <button 
+              @click="loadSchedule"
+              class="bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors"
+            >
+              Попробовать снова
+            </button>
           </div>
         </div>
       </div>
@@ -221,9 +239,10 @@ const pageTop = ref(null)
 const schedule = ref([])
 const loading = ref(true)
 
+// Мой Render URL
 const API_URL = 'https://kumlbackend.onrender.com'
 
-// Проверка админского доступа (простая проверка по localStorage)
+// Проверка админского доступа
 const isAdmin = computed(() => {
   if (process.client) {
     return localStorage.getItem('admin-authenticated') === 'true'
@@ -273,20 +292,30 @@ const sortedSchedule = computed(() => {
 const loadSchedule = async () => {
   try {
     loading.value = true
+    console.log('🔄 Loading schedule from:', API_URL)
+    
     const response = await fetch(`${API_URL}/weeks`)
-    if (response.ok) {
-      const data = await response.json()
-      schedule.value = data
-    } else {
-      console.error('Ошибка загрузки расписания')
-      schedule.value = []
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
     }
+    
+    const data = await response.json()
+    schedule.value = data
+    
+    console.log('✅ Schedule loaded:', data.length, 'weeks')
+    
   } catch (error) {
-    console.error('Ошибка:', error)
+    console.error('❌ Error loading schedule:', error)
     schedule.value = []
   } finally {
     loading.value = false
   }
+}
+
+const forceReload = async () => {
+  console.log('🔄 Force reloading schedule...')
+  await loadSchedule()
 }
 
 onMounted(async () => {
@@ -310,7 +339,6 @@ onMounted(async () => {
     })
   }, observerOptions)
 
-  // Наблюдаем за всеми элементами с классом scroll-animate
   document.querySelectorAll('.scroll-animate').forEach(el => {
     observer.observe(el)
   })
