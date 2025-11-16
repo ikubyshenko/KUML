@@ -4,13 +4,13 @@
     <section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-cyan-100 overflow-hidden w-full px-6 sm:px-10">
       <!-- Фон -->
       <div class="absolute inset-0 z-0 w-full h-full">
-        <img 
-          src="/assets/images/bgULK.png" 
+        <img
+          src="/assets/images/bgULK.png"
           alt="AI Center Background"
           class="w-full h-full object-cover opacity-10"
         />
       </div>
-      
+
       <!-- Декор -->
       <div class="absolute inset-0 z-0 w-full h-full">
         <div class="absolute top-20 left-10 w-20 h-20 bg-blue-200 rounded-full blur-xl opacity-30 animate-pulse"></div>
@@ -29,7 +29,7 @@
           Ты поймёшь, как создаются и работают нейронные сети, и научишься встраивать их в реальные веб‑приложения.
         </p>
         <div class="scroll-animate">
-          <button 
+          <button
             @click="scrollToWhoWeAre"
             class="bg-cyan-600 hover:bg-cyan-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
           >
@@ -52,9 +52,9 @@
         <!-- Список навыков -->
 <!-- Список навыков -->
 <div class="grid md:grid-cols-2 gap-4">
-  <div 
-    v-for="(skill, index) in skills" 
-    :key="index" 
+  <div
+    v-for="(skill, index) in skills"
+    :key="index"
     class="flex items-start space-x-3 scroll-animate"
   >
     <div class="w-2 h-2 mt-2 bg-cyan-600 rounded-full"></div>
@@ -75,8 +75,8 @@
           Оффлайн‑формат — обучение в живом общении. С первого дня ты погружаешься в практику: реальные задачи, собственные проекты, поддержка менторов. В конце курса — твой собственный AI‑проект, готовый к защите и развитию.
         </p>
         <div class="scroll-animate">
-          <a 
-            href="https://docs.google.com/forms/d/e/1FAIpQLSfWckw0PdIt-5dr9YZM-UXvqu6lnMMXWFLPfFW1-v6ro1toDA/viewform?usp=header" 
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfWckw0PdIt-5dr9YZM-UXvqu6lnMMXWFLPfFW1-v6ro1toDA/viewform?usp=header"
             target="_blank"
             class="bg-white text-cyan-600 hover:bg-gray-100 px-10 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 text-lg shadow-xl inline-block"
           >
@@ -94,7 +94,7 @@ import { ref, onMounted } from 'vue'
 const whoWeAreSection = ref<HTMLElement | null>(null)
 
 const scrollToWhoWeAre = () => {
-  whoWeAreSection.value?.scrollIntoView({ 
+  whoWeAreSection.value?.scrollIntoView({
     behavior: 'smooth',
     block: 'start'
   })
