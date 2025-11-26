@@ -38,20 +38,13 @@
           10 недель интенсивного обучения от основ веба до полноценных AI-приложений
         </p>
 
-        <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center scroll-animate">
+        <!-- CTA Button -->
+        <div class="scroll-animate">
           <button 
             @click="scrollToSchedule"
             class="bg-cyan-600 hover:bg-cyan-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
           >
             Программа обучения
-          </button>
-          <button 
-            v-if="isAdmin"
-            @click="navigateTo('/admin')"
-            class="bg-gray-600 hover:bg-gray-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
-          >
-            Админ панель
           </button>
         </div>
       </div>
@@ -80,18 +73,9 @@
           </p>
         </div>
 
-        <!-- Loading State -->
-        <div v-if="loading" class="text-center py-12">
-          <div class="inline-flex items-center justify-center space-x-3">
-            <div class="w-8 h-8 border-4 border-cyan-600 border-t-transparent rounded-full animate-spin"></div>
-            <span class="text-gray-600 text-lg">Загрузка расписания...</span>
-          </div>
-        </div>
-
-        <!-- Schedule Table - Fully responsive without horizontal scroll -->
-        <div v-else-if="schedule.length > 0" class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-4 sm:p-6 lg:p-8 shadow-2xl">
-          <!-- Table Header - Hidden on mobile, visible on desktop -->
-          <div class="hidden lg:grid lg:grid-cols-12 gap-4 mb-6 px-6">
+        <!-- Desktop Schedule Table -->
+        <div class="hidden lg:block bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-8 shadow-2xl">
+          <div class="grid grid-cols-12 gap-4 mb-6 px-6">
             <div class="col-span-2 text-center scroll-animate">
               <span class="text-cyan-600 font-semibold text-lg">НЕДЕЛЯ</span>
             </div>
@@ -103,56 +87,26 @@
             </div>
           </div>
 
-          <!-- Table Content -->
-          <div class="space-y-4 sm:space-y-6">
+          <div class="space-y-4">
             <div 
-              v-for="week in sortedSchedule" 
-              :key="week.id"
-              class="bg-white rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-l-4 scroll-animate"
-              :class="getWeekBorderColor(week.number)"
+              v-for="(week, index) in schedule" 
+              :key="week.number"
+              class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-l-4 scroll-animate"
+              :class="{
+                'border-cyan-500': week.number % 3 === 1,
+                'border-blue-500': week.number % 3 === 2,
+                'border-indigo-500': week.number % 3 === 0
+              }"
             >
-              <!-- Mobile Layout -->
-              <div class="lg:hidden space-y-4">
-                <!-- Week Header for Mobile -->
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 rounded-full text-white font-bold flex items-center justify-center shadow-md text-lg"
-                      :class="getWeekBgColor(week.number)">
-                      {{ week.number }}
-                    </div>
-                    <div>
-                      <span class="text-cyan-600 font-semibold block">Неделя {{ week.number }}</span>
-                      <span class="text-gray-500 text-sm">Тема обучения</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Theme & Description for Mobile -->
-                <div>
-                  <h3 class="text-lg font-bold text-gray-900 mb-2">{{ week.theme }}</h3>
-                  <p class="text-gray-600 text-base leading-relaxed">{{ week.description }}</p>
-                </div>
-
-                <!-- Practice for Mobile -->
-                <div class="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl p-4 border border-cyan-200">
-                  <div class="flex items-start space-x-3">
-                    <div class="w-10 h-10 bg-cyan-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <span class="text-cyan-600 text-lg">🛠️</span>
-                    </div>
-                    <div>
-                      <span class="text-cyan-600 font-semibold text-sm block mb-1">Практическая работа:</span>
-                      <span class="text-gray-800 font-medium text-base">{{ week.practice }}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Desktop Layout -->
-              <div class="hidden lg:grid lg:grid-cols-12 gap-4 items-center">
+              <div class="grid grid-cols-12 gap-4 items-center">
                 <!-- Week Number -->
                 <div class="col-span-2 text-center">
                   <div class="inline-flex items-center justify-center w-16 h-16 rounded-full text-white font-bold text-xl shadow-lg"
-                    :class="getWeekBgColor(week.number)">
+                    :class="{
+                      'bg-cyan-500': week.number % 3 === 1,
+                      'bg-blue-500': week.number % 3 === 2,
+                      'bg-indigo-500': week.number % 3 === 0
+                    }">
                     {{ week.number }}
                   </div>
                 </div>
@@ -179,14 +133,48 @@
           </div>
         </div>
 
-        <!-- Empty State -->
-        <div v-else class="text-center py-12">
-          <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-8 max-w-md mx-auto">
-            <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span class="text-yellow-600 text-2xl">⚠️</span>
+        <!-- Mobile Schedule Cards -->
+        <div class="lg:hidden space-y-6">
+          <div 
+            v-for="week in schedule" 
+            :key="week.number"
+            class="bg-gradient-to-br from-white to-blue-50 rounded-2xl p-6 shadow-lg border-l-4 scroll-animate"
+            :class="{
+              'border-cyan-500': week.number % 3 === 1,
+              'border-blue-500': week.number % 3 === 2,
+              'border-indigo-500': week.number % 3 === 0
+            }"
+          >
+            <!-- Week Header -->
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 rounded-full text-white font-bold flex items-center justify-center shadow-md"
+                  :class="{
+                    'bg-cyan-500': week.number % 3 === 1,
+                    'bg-blue-500': week.number % 3 === 2,
+                    'bg-indigo-500': week.number % 3 === 0
+                  }">
+                  {{ week.number }}
+                </div>
+                <span class="text-cyan-600 font-semibold">Неделя {{ week.number }}</span>
+              </div>
             </div>
-            <h3 class="text-xl font-semibold text-gray-900 mb-2">Расписание недоступно</h3>
-            <p class="text-gray-600">Попробуйте обновить страницу позже</p>
+
+            <!-- Theme -->
+            <div class="mb-4">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">{{ week.theme }}</h3>
+              <p class="text-gray-600">{{ week.description }}</p>
+            </div>
+
+            <!-- Practice -->
+            <div class="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl p-4 border border-cyan-200">
+              <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-cyan-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span class="text-cyan-600">🛠️</span>
+                </div>
+                <span class="text-gray-800 font-medium">{{ week.practice }}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -216,23 +204,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const scheduleSection = ref(null)
 const pageTop = ref(null)
-const schedule = ref([])
-const loading = ref(true)
-
-// ЗАМЕНИТЕ НА ВАШ НОВЫЙ RENDER URL!
-const API_URL = 'https://kumlbackend.onrender.com'
-
-// Проверка админского доступа
-const isAdmin = computed(() => {
-  if (process.client) {
-    return localStorage.getItem('admin-authenticated') === 'true'
-  }
-  return false
-})
 
 const scrollToSchedule = () => {
   scheduleSection.value?.scrollIntoView({ 
@@ -241,70 +216,120 @@ const scrollToSchedule = () => {
   })
 }
 
+// Функция для скролла наверх при загрузке
 const scrollToTop = () => {
   if (process.client) {
     window.scrollTo(0, 0)
   }
 }
 
-// Получение цвета границы для недели
-const getWeekBorderColor = (weekNumber) => {
-  const num = weekNumber % 3
-  return {
-    'border-cyan-500': num === 1,
-    'border-blue-500': num === 2,
-    'border-indigo-500': num === 0
+const schedule = [
+  {
+    number: 1,
+    theme: "Введение в веб",
+    description: "HTML, CSS, JavaScript основы",
+    practice: "Форма + отправка запроса"
+  },
+  {
+    number: 2,
+    theme: "Основы PHP и REST API",
+    description: "Серверная разработка и API",
+    practice: "Простейший сервер"
+  },
+  {
+    number: 3,
+    theme: "CRUD и Базы данных",
+    description: "Создание, чтение, обновление, удаление",
+    practice: "CRUD-приложение"
+  },
+  {
+    number: 4,
+    theme: "Архитектура данных",
+    description: "Проектирование структур данных",
+    practice: "Импорт CSV"
+  },
+  {
+    number: 5,
+    theme: "Введение в Machine Learning",
+    description: "Основы машинного обучения",
+    practice: "Классификатор отзывов"
+  },
+  {
+    number: 6,
+    theme: "Интеграция модели",
+    description: "Соединение ML с веб-приложением",
+    practice: "Подключение модели к API"
+  },
+  {
+    number: 7,
+    theme: "Веб-интерфейс для нейронной сети",
+    description: "Создание UI для AI-моделей",
+    practice: "Вывод предсказаний"
+  },
+  {
+    number: 8,
+    theme: "Проектирование ИИ-приложений",
+    description: "Архитектура AI-проектов",
+    practice: "Работа в командах"
+  },
+  {
+    number: 9,
+    theme: "Разработка и тестирование",
+    description: "Финальная стадия разработки",
+    practice: "Отладка и подготовка"
+  },
+  {
+    number: 10,
+    theme: "Презентация проектов",
+    description: "Демонстрация результатов",
+    practice: "Защита проектов"
   }
-}
+]
 
-// Получение цвета фона для недели
-const getWeekBgColor = (weekNumber) => {
-  const num = weekNumber % 3
-  return {
-    'bg-cyan-500': num === 1,
-    'bg-blue-500': num === 2,
-    'bg-indigo-500': num === 0
-  }
-}
-
-// Сортировка расписания по номеру недели
-const sortedSchedule = computed(() => {
-  return [...schedule.value].sort((a, b) => a.number - b.number)
-})
-
-// Загрузка расписания с бэкенда
-const loadSchedule = async () => {
-  try {
-    loading.value = true
-    const response = await fetch(`${API_URL}/weeks`)
-    
-    if (response.ok) {
-      const data = await response.json()
-      schedule.value = data
-    }
-  } catch (error) {
-    console.error('Error loading schedule:', error)
-    schedule.value = []
-  } finally {
-    loading.value = false
-  }
-}
-
-onMounted(async () => {
+onMounted(() => {
+  // Скролл наверх при загрузке
   scrollToTop()
-  await loadSchedule()
 
-  // Анимации при скролле
+  // Инициализация анимаций при скролле
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  }
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('animate-in')
       }
     })
-  }, { threshold: 0.1 })
+  }, observerOptions)
 
+  // Наблюдаем за всеми элементами с классом scroll-animate
   document.querySelectorAll('.scroll-animate').forEach(el => {
     observer.observe(el)
+  })
+
+  // Предотвращаем скролл body когда открыт сайдбар
+  const checkSidebar = () => {
+    const sidebar = document.querySelector('[class*="translate-x-0"]')
+    if (sidebar) {
+      document.body.style.overflow = 'hidden'
+      document.body.style.position = 'fixed'
+      document.body.style.width = '100%'
+    } else {
+      document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.width = ''
+    }
+  }
+
+  // Наблюдаем за изменениями в DOM для сайдбара
+  const observerSidebar = new MutationObserver(checkSidebar)
+  observerSidebar.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ['class']
   })
 })
 
@@ -330,5 +355,12 @@ section {
   width: 100vw;
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
+}
+
+/* Фиксируем body когда открыт сайдбар */
+body.sidebar-open {
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100% !important;
 }
 </style>

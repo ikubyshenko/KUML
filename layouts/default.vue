@@ -6,11 +6,13 @@
         <div class="flex items-center justify-between h-20">
           <!-- Logo -->
           <div class="w-40 h-12 sm:w-48 sm:h-14 transition-all duration-300 ease-out hover:scale-105">
-            <img
+            <a href="/">
+              <img
                 src="/assets/images/image.png"
                 class="w-full h-full object-contain drop-shadow-sm"
                 alt="AI Center Logo"
             >
+            </a>
           </div>
 
           <!-- Desktop Navigation -->
@@ -47,10 +49,10 @@
               </button>
               <div class="absolute top-full right-0 mt-2 w-48 bg-white rounded-2xl shadow-lg border border-gray-200 p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
                 <nav class="space-y-2">
-                  <NuxtLink to="/profile" class="dropdown-link">Мой профиль</NuxtLink>
+                  <NuxtLink to="/users/profile" class="dropdown-link">Мой профиль</NuxtLink>
                   <NuxtLink to="/settings" class="dropdown-link">Настройки</NuxtLink>
                   <NuxtLink to="/achievements" class="dropdown-link">Достижения</NuxtLink>
-                  <NuxtLink to="/login" class="dropdown-link text-red-600 hover:text-red-700">Войти</NuxtLink>
+                  <NuxtLink to="/users/login" class="dropdown-link text-red-600 hover:text-red-700">Войти</NuxtLink>
                 </nav>
               </div>
             </div>
@@ -89,7 +91,6 @@
               >
                 <nav class="space-y-3">
                   <NuxtLink to="/" class="modal-link" @click="closeMenu">Главная</NuxtLink>
-                  <NuxtLink to="/schedule" class="modal-link" @click="closeMenu">Расписание курса</NuxtLink>
                   <NuxtLink to="/materials" class="modal-link" @click="closeMenu">Материалы</NuxtLink>
                   <NuxtLink to="/contact" class="modal-link" @click="closeMenu">Связь с нами</NuxtLink>
                 </nav>
@@ -107,7 +108,7 @@
 
     <!-- Mobile Bottom Navigation -->
     <div class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-200 lg:hidden">
-      <div class="flex items-center justify-around py-3">
+      <div class="flex items-center justify-around py-2">
         <!-- Home -->
         <NuxtLink to="/" class="flex flex-col items-center justify-center w-12 h-12" @click="closeMenu">
           <div class="w-10 h-10 sm:w-48 sm:h-14 transition-all duration-300 ease-out hover:scale-105">
@@ -127,7 +128,7 @@
         </NuxtLink>
 
         <!-- Add/Create -->
-        <NuxtLink to="/create" class="flex flex-col items-center justify-center w-12 h-12" @click="closeMenu">
+        <NuxtLink to="/admin/login.vue" class="flex flex-col items-center justify-center w-12 h-12" @click="closeMenu">
           <div class="w-10 h-10 sm:w-48 sm:h-14 transition-all duration-300 ease-out hover:scale-105">
             <img
                 src="/assets/images/plus.svg"
@@ -136,16 +137,16 @@
         </NuxtLink>
 
         <!-- Notifications -->
-        <NuxtLink to="/notifications" class="flex flex-col items-center justify-center w-12 h-12" @click="closeMenu">
+        <NuxtLink to="/schedule" class="flex flex-col items-center justify-center w-12 h-12" @click="closeMenu">
           <div class="w-10 h-10 sm:w-48 sm:h-14 transition-all duration-300 ease-out hover:scale-105">
             <img
-                src="/assets/images/notifications.svg"
+                src="/assets/images/schedule.svg"
             >
           </div>
         </NuxtLink>
 
         <!-- Profile -->
-        <NuxtLink to="/profile" class="flex flex-col items-center justify-center w-12 h-12" @click="closeMenu">
+        <NuxtLink to="/users/login" class="flex flex-col items-center justify-center w-12 h-12" @click="closeMenu">
           <div class="w-10 h-10 sm:w-48 sm:h-14 transition-all duration-300 ease-out hover:scale-105 " >
             <img
                 src="/assets/images/profile.svg"
