@@ -1019,7 +1019,7 @@ const _SCpNBuv7h7XZ08TfFkELDyIMAuGycJnJLg3_U6ek = (function(nitro) {
 
 const rootDir = "E:/ITSchool";
 
-const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"}],"link":[],"style":[],"script":[],"noscript":[]};
+const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"},{"name":"theme-color","content":"ffffff"}],"link":[{"rel":"manifest","href":"/manifest.json"}],"style":[],"script":[],"noscript":[]};
 
 const appRootTag = "div";
 
@@ -1208,6 +1208,7 @@ const VueResolver = (_, value) => {
 };
 
 const headSymbol = "usehead";
+// @__NO_SIDE_EFFECTS__
 function vueInstall(head) {
   const plugin = {
     install(app) {
@@ -1219,10 +1220,12 @@ function vueInstall(head) {
   return plugin.install;
 }
 
+// @__NO_SIDE_EFFECTS__
 function resolveUnrefHeadInput(input) {
   return walkResolver(input, VueResolver);
 }
 
+// @__NO_SIDE_EFFECTS__
 function createHead(options = {}) {
   const head = createHead$1({
     ...options,
@@ -2036,14 +2039,7 @@ const renderer = defineRenderHandler(async (event) => {
   };
 });
 function normalizeChunks(chunks) {
-  const result = [];
-  for (const _chunk of chunks) {
-    const chunk = _chunk?.trim();
-    if (chunk) {
-      result.push(chunk);
-    }
-  }
-  return result;
+  return chunks.filter(Boolean).map((i) => i.trim());
 }
 function joinTags(tags) {
   return tags.join("");

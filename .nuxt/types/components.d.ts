@@ -14,19 +14,20 @@ type HydrationStrategies = {
 type LazyComponent<T> = (T & DefineComponent<HydrationStrategies, {}, {}, {}, {}, {}, {}, { hydrated: () => void }>)
 
 interface _GlobalComponents {
-      'Sidebar': typeof import("../../components/sidebar.vue")['default']
-    'NuxtWelcome': typeof import("../../node_modules/nuxt/dist/app/components/welcome.vue")['default']
-    'NuxtLayout': typeof import("../../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
-    'NuxtErrorBoundary': typeof import("../../node_modules/nuxt/dist/app/components/nuxt-error-boundary.vue")['default']
-    'ClientOnly': typeof import("../../node_modules/nuxt/dist/app/components/client-only")['default']
-    'DevOnly': typeof import("../../node_modules/nuxt/dist/app/components/dev-only")['default']
-    'ServerPlaceholder': typeof import("../../node_modules/nuxt/dist/app/components/server-placeholder")['default']
-    'NuxtLink': typeof import("../../node_modules/nuxt/dist/app/components/nuxt-link")['default']
-    'NuxtLoadingIndicator': typeof import("../../node_modules/nuxt/dist/app/components/nuxt-loading-indicator")['default']
-    'NuxtTime': typeof import("../../node_modules/nuxt/dist/app/components/nuxt-time.vue")['default']
-    'NuxtRouteAnnouncer': typeof import("../../node_modules/nuxt/dist/app/components/nuxt-route-announcer")['default']
-    'NuxtImg': typeof import("../../node_modules/nuxt/dist/app/components/nuxt-stubs")['NuxtImg']
-    'NuxtPicture': typeof import("../../node_modules/nuxt/dist/app/components/nuxt-stubs")['NuxtPicture']
+      'PWAInstall': typeof import("../components/PWAInstall.vue")['default']
+    'Sidebar': typeof import("../components/sidebar.vue")['default']
+    'NuxtWelcome': typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']
+    'NuxtLayout': typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
+    'NuxtErrorBoundary': typeof import("../node_modules/nuxt/dist/app/components/nuxt-error-boundary.vue")['default']
+    'ClientOnly': typeof import("../node_modules/nuxt/dist/app/components/client-only")['default']
+    'DevOnly': typeof import("../node_modules/nuxt/dist/app/components/dev-only")['default']
+    'ServerPlaceholder': typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']
+    'NuxtLink': typeof import("../node_modules/nuxt/dist/app/components/nuxt-link")['default']
+    'NuxtLoadingIndicator': typeof import("../node_modules/nuxt/dist/app/components/nuxt-loading-indicator")['default']
+    'NuxtTime': typeof import("../node_modules/nuxt/dist/app/components/nuxt-time.vue")['default']
+    'NuxtRouteAnnouncer': typeof import("../node_modules/nuxt/dist/app/components/nuxt-route-announcer")['default']
+    'NuxtImg': typeof import("../node_modules/nuxt/dist/app/components/nuxt-stubs")['NuxtImg']
+    'NuxtPicture': typeof import("../node_modules/nuxt/dist/app/components/nuxt-stubs")['NuxtPicture']
     'AccumulativeShadows': typeof import("@tresjs/cientos")['AccumulativeShadows']
     'Align': typeof import("@tresjs/cientos")['Align']
     'AnimatedSprite': typeof import("@tresjs/cientos")['AnimatedSprite']
@@ -58,7 +59,7 @@ interface _GlobalComponents {
     'Grid': typeof import("@tresjs/cientos")['Grid']
     'Helper': typeof import("@tresjs/cientos")['Helper']
     'HolographicMaterial': typeof import("@tresjs/cientos")['HolographicMaterial']
-    'Html': typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Html']
+    'Html': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Html']
     'Icosahedron': typeof import("@tresjs/cientos")['Icosahedron']
     'Image': typeof import("@tresjs/cientos")['Image']
     'KeyboardControls': typeof import("@tresjs/cientos")['KeyboardControls']
@@ -152,32 +153,41 @@ interface _GlobalComponents {
     'ToneMappingPmndrs': typeof import("@tresjs/post-processing")['ToneMappingPmndrs']
     'UnrealBloom': typeof import("@tresjs/post-processing")['UnrealBloom']
     'VignettePmndrs': typeof import("@tresjs/post-processing")['VignettePmndrs']
-    'TresCanvas': typeof import("../../node_modules/@tresjs/nuxt/dist/runtime/TresCanvas.client.vue")['default']
-    'TresCanvas': typeof import("../../node_modules/@tresjs/nuxt/dist/runtime/TresCanvas.server.vue")['default']
-    'NuxtPage': typeof import("../../node_modules/nuxt/dist/pages/runtime/page")['default']
-    'NoScript': typeof import("../../node_modules/nuxt/dist/head/runtime/components")['NoScript']
-    'Link': typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Link']
-    'Base': typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Base']
-    'Title': typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Title']
-    'Meta': typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Meta']
-    'Style': typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Style']
-    'Head': typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Head']
-    'Body': typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Body']
-    'NuxtIsland': typeof import("../../node_modules/nuxt/dist/app/components/nuxt-island")['default']
-    'NuxtRouteAnnouncer': typeof import("../../node_modules/nuxt/dist/app/components/server-placeholder")['default']
-      'LazySidebar': LazyComponent<typeof import("../../components/sidebar.vue")['default']>
-    'LazyNuxtWelcome': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/welcome.vue")['default']>
-    'LazyNuxtLayout': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/nuxt-layout")['default']>
-    'LazyNuxtErrorBoundary': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/nuxt-error-boundary.vue")['default']>
-    'LazyClientOnly': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/client-only")['default']>
-    'LazyDevOnly': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/dev-only")['default']>
-    'LazyServerPlaceholder': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
-    'LazyNuxtLink': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/nuxt-link")['default']>
-    'LazyNuxtLoadingIndicator': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/nuxt-loading-indicator")['default']>
-    'LazyNuxtTime': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/nuxt-time.vue")['default']>
-    'LazyNuxtRouteAnnouncer': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/nuxt-route-announcer")['default']>
-    'LazyNuxtImg': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/nuxt-stubs")['NuxtImg']>
-    'LazyNuxtPicture': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/nuxt-stubs")['NuxtPicture']>
+    'TresCanvas': typeof import("../node_modules/@tresjs/nuxt/dist/runtime/TresCanvas.client.vue")['default']
+    'TresCanvas': typeof import("../node_modules/@tresjs/nuxt/dist/runtime/TresCanvas.server.vue")['default']
+    'VitePwaManifest': typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/VitePwaManifest")['default']
+    'NuxtPwaManifest': typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/VitePwaManifest")['default']
+    'NuxtPwaAssets': typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/NuxtPwaAssets")['default']
+    'PwaAppleImage': typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/nuxt4/PwaAppleImage")['default']
+    'PwaAppleSplashScreenImage': typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/nuxt4/PwaAppleSplashScreenImage")['default']
+    'PwaFaviconImage': typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/nuxt4/PwaFaviconImage")['default']
+    'PwaMaskableImage': typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/nuxt4/PwaMaskableImage")['default']
+    'PwaTransparentImage': typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/nuxt4/PwaTransparentImage")['default']
+    'NuxtPage': typeof import("../node_modules/nuxt/dist/pages/runtime/page")['default']
+    'NoScript': typeof import("../node_modules/nuxt/dist/head/runtime/components")['NoScript']
+    'Link': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Link']
+    'Base': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Base']
+    'Title': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Title']
+    'Meta': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Meta']
+    'Style': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Style']
+    'Head': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Head']
+    'Body': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
+    'NuxtIsland': typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']
+    'NuxtRouteAnnouncer': typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']
+      'LazyPWAInstall': LazyComponent<typeof import("../components/PWAInstall.vue")['default']>
+    'LazySidebar': LazyComponent<typeof import("../components/sidebar.vue")['default']>
+    'LazyNuxtWelcome': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']>
+    'LazyNuxtLayout': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']>
+    'LazyNuxtErrorBoundary': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-error-boundary.vue")['default']>
+    'LazyClientOnly': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/client-only")['default']>
+    'LazyDevOnly': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/dev-only")['default']>
+    'LazyServerPlaceholder': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
+    'LazyNuxtLink': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-link")['default']>
+    'LazyNuxtLoadingIndicator': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-loading-indicator")['default']>
+    'LazyNuxtTime': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-time.vue")['default']>
+    'LazyNuxtRouteAnnouncer': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-route-announcer")['default']>
+    'LazyNuxtImg': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-stubs")['NuxtImg']>
+    'LazyNuxtPicture': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-stubs")['NuxtPicture']>
     'LazyAccumulativeShadows': LazyComponent<typeof import("@tresjs/cientos")['AccumulativeShadows']>
     'LazyAlign': LazyComponent<typeof import("@tresjs/cientos")['Align']>
     'LazyAnimatedSprite': LazyComponent<typeof import("@tresjs/cientos")['AnimatedSprite']>
@@ -209,7 +219,7 @@ interface _GlobalComponents {
     'LazyGrid': LazyComponent<typeof import("@tresjs/cientos")['Grid']>
     'LazyHelper': LazyComponent<typeof import("@tresjs/cientos")['Helper']>
     'LazyHolographicMaterial': LazyComponent<typeof import("@tresjs/cientos")['HolographicMaterial']>
-    'LazyHtml': LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Html']>
+    'LazyHtml': LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Html']>
     'LazyIcosahedron': LazyComponent<typeof import("@tresjs/cientos")['Icosahedron']>
     'LazyImage': LazyComponent<typeof import("@tresjs/cientos")['Image']>
     'LazyKeyboardControls': LazyComponent<typeof import("@tresjs/cientos")['KeyboardControls']>
@@ -303,19 +313,27 @@ interface _GlobalComponents {
     'LazyToneMappingPmndrs': LazyComponent<typeof import("@tresjs/post-processing")['ToneMappingPmndrs']>
     'LazyUnrealBloom': LazyComponent<typeof import("@tresjs/post-processing")['UnrealBloom']>
     'LazyVignettePmndrs': LazyComponent<typeof import("@tresjs/post-processing")['VignettePmndrs']>
-    'LazyTresCanvas': LazyComponent<typeof import("../../node_modules/@tresjs/nuxt/dist/runtime/TresCanvas.client.vue")['default']>
-    'LazyTresCanvas': LazyComponent<typeof import("../../node_modules/@tresjs/nuxt/dist/runtime/TresCanvas.server.vue")['default']>
-    'LazyNuxtPage': LazyComponent<typeof import("../../node_modules/nuxt/dist/pages/runtime/page")['default']>
-    'LazyNoScript': LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['NoScript']>
-    'LazyLink': LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Link']>
-    'LazyBase': LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Base']>
-    'LazyTitle': LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Title']>
-    'LazyMeta': LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Meta']>
-    'LazyStyle': LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Style']>
-    'LazyHead': LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Head']>
-    'LazyBody': LazyComponent<typeof import("../../node_modules/nuxt/dist/head/runtime/components")['Body']>
-    'LazyNuxtIsland': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/nuxt-island")['default']>
-    'LazyNuxtRouteAnnouncer': LazyComponent<typeof import("../../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
+    'LazyTresCanvas': LazyComponent<typeof import("../node_modules/@tresjs/nuxt/dist/runtime/TresCanvas.client.vue")['default']>
+    'LazyTresCanvas': LazyComponent<typeof import("../node_modules/@tresjs/nuxt/dist/runtime/TresCanvas.server.vue")['default']>
+    'LazyVitePwaManifest': LazyComponent<typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/VitePwaManifest")['default']>
+    'LazyNuxtPwaManifest': LazyComponent<typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/VitePwaManifest")['default']>
+    'LazyNuxtPwaAssets': LazyComponent<typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/NuxtPwaAssets")['default']>
+    'LazyPwaAppleImage': LazyComponent<typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/nuxt4/PwaAppleImage")['default']>
+    'LazyPwaAppleSplashScreenImage': LazyComponent<typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/nuxt4/PwaAppleSplashScreenImage")['default']>
+    'LazyPwaFaviconImage': LazyComponent<typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/nuxt4/PwaFaviconImage")['default']>
+    'LazyPwaMaskableImage': LazyComponent<typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/nuxt4/PwaMaskableImage")['default']>
+    'LazyPwaTransparentImage': LazyComponent<typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/nuxt4/PwaTransparentImage")['default']>
+    'LazyNuxtPage': LazyComponent<typeof import("../node_modules/nuxt/dist/pages/runtime/page")['default']>
+    'LazyNoScript': LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['NoScript']>
+    'LazyLink': LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Link']>
+    'LazyBase': LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Base']>
+    'LazyTitle': LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Title']>
+    'LazyMeta': LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Meta']>
+    'LazyStyle': LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Style']>
+    'LazyHead': LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Head']>
+    'LazyBody': LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']>
+    'LazyNuxtIsland': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']>
+    'LazyNuxtRouteAnnouncer': LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
 }
 
 declare module 'vue' {

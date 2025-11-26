@@ -3,6 +3,7 @@ declare module '@nuxt/schema' {
   interface ModuleDependencies {
     ["@nuxtjs/tailwindcss"]?: ModuleDependencyMeta<typeof import("@nuxtjs/tailwindcss").default extends NuxtModule<infer O> ? O : Record<string, unknown>>
     ["@tresjs/nuxt"]?: ModuleDependencyMeta<typeof import("@tresjs/nuxt").default extends NuxtModule<infer O> ? O : Record<string, unknown>>
+    ["@vite-pwa/nuxt"]?: ModuleDependencyMeta<typeof import("@vite-pwa/nuxt").default extends NuxtModule<infer O> ? O : Record<string, unknown>>
     ["@nuxt/devtools"]?: ModuleDependencyMeta<typeof import("@nuxt/devtools").default extends NuxtModule<infer O> ? O : Record<string, unknown>>
     ["@nuxt/telemetry"]?: ModuleDependencyMeta<typeof import("@nuxt/telemetry").default extends NuxtModule<infer O> ? O : Record<string, unknown>>
   }
@@ -15,6 +16,10 @@ declare module '@nuxt/schema' {
      * Configuration for `@tresjs/nuxt`
      */
     ["tres"]: typeof import("@tresjs/nuxt").default extends NuxtModule<infer O, unknown, boolean> ? O : Record<string, any>
+    /**
+     * Configuration for `@vite-pwa/nuxt`
+     */
+    ["pwa"]: typeof import("@vite-pwa/nuxt").default extends NuxtModule<infer O, unknown, boolean> ? O : Record<string, any>
     /**
      * Configuration for `@nuxt/devtools`
      */
@@ -34,6 +39,10 @@ declare module '@nuxt/schema' {
      */
     ["tres"]?: typeof import("@tresjs/nuxt").default extends NuxtModule<infer O, unknown, boolean> ? Partial<O> : Record<string, any>
     /**
+     * Configuration for `@vite-pwa/nuxt`
+     */
+    ["pwa"]?: typeof import("@vite-pwa/nuxt").default extends NuxtModule<infer O, unknown, boolean> ? Partial<O> : Record<string, any>
+    /**
      * Configuration for `@nuxt/devtools`
      */
     ["devtools"]?: typeof import("@nuxt/devtools").default extends NuxtModule<infer O, unknown, boolean> ? Partial<O> : Record<string, any>
@@ -41,13 +50,14 @@ declare module '@nuxt/schema' {
      * Configuration for `@nuxt/telemetry`
      */
     ["telemetry"]?: typeof import("@nuxt/telemetry").default extends NuxtModule<infer O, unknown, boolean> ? Partial<O> : Record<string, any>
-    modules?: (undefined | null | false | NuxtModule<any> | string | [NuxtModule | string, Record<string, any>] | ["@nuxtjs/tailwindcss", Exclude<NuxtConfig["tailwindcss"], boolean>] | ["@tresjs/nuxt", Exclude<NuxtConfig["tres"], boolean>] | ["@nuxt/devtools", Exclude<NuxtConfig["devtools"], boolean>] | ["@nuxt/telemetry", Exclude<NuxtConfig["telemetry"], boolean>])[],
+    modules?: (undefined | null | false | NuxtModule<any> | string | [NuxtModule | string, Record<string, any>] | ["@nuxtjs/tailwindcss", Exclude<NuxtConfig["tailwindcss"], boolean>] | ["@tresjs/nuxt", Exclude<NuxtConfig["tres"], boolean>] | ["@vite-pwa/nuxt", Exclude<NuxtConfig["pwa"], boolean>] | ["@nuxt/devtools", Exclude<NuxtConfig["devtools"], boolean>] | ["@nuxt/telemetry", Exclude<NuxtConfig["telemetry"], boolean>])[],
   }
 }
 declare module 'nuxt/schema' {
   interface ModuleDependencies {
     ["@nuxtjs/tailwindcss"]?: ModuleDependencyMeta<typeof import("@nuxtjs/tailwindcss").default extends NuxtModule<infer O> ? O : Record<string, unknown>>
     ["@tresjs/nuxt"]?: ModuleDependencyMeta<typeof import("@tresjs/nuxt").default extends NuxtModule<infer O> ? O : Record<string, unknown>>
+    ["@vite-pwa/nuxt"]?: ModuleDependencyMeta<typeof import("@vite-pwa/nuxt").default extends NuxtModule<infer O> ? O : Record<string, unknown>>
     ["@nuxt/devtools"]?: ModuleDependencyMeta<typeof import("@nuxt/devtools").default extends NuxtModule<infer O> ? O : Record<string, unknown>>
     ["@nuxt/telemetry"]?: ModuleDependencyMeta<typeof import("@nuxt/telemetry").default extends NuxtModule<infer O> ? O : Record<string, unknown>>
   }
@@ -62,6 +72,11 @@ declare module 'nuxt/schema' {
      * @see https://www.npmjs.com/package/@tresjs/nuxt
      */
     ["tres"]: typeof import("@tresjs/nuxt").default extends NuxtModule<infer O, unknown, boolean> ? O : Record<string, any>
+    /**
+     * Configuration for `@vite-pwa/nuxt`
+     * @see https://www.npmjs.com/package/@vite-pwa/nuxt
+     */
+    ["pwa"]: typeof import("@vite-pwa/nuxt").default extends NuxtModule<infer O, unknown, boolean> ? O : Record<string, any>
     /**
      * Configuration for `@nuxt/devtools`
      * @see https://www.npmjs.com/package/@nuxt/devtools
@@ -85,6 +100,11 @@ declare module 'nuxt/schema' {
      */
     ["tres"]?: typeof import("@tresjs/nuxt").default extends NuxtModule<infer O, unknown, boolean> ? Partial<O> : Record<string, any>
     /**
+     * Configuration for `@vite-pwa/nuxt`
+     * @see https://www.npmjs.com/package/@vite-pwa/nuxt
+     */
+    ["pwa"]?: typeof import("@vite-pwa/nuxt").default extends NuxtModule<infer O, unknown, boolean> ? Partial<O> : Record<string, any>
+    /**
      * Configuration for `@nuxt/devtools`
      * @see https://www.npmjs.com/package/@nuxt/devtools
      */
@@ -94,6 +114,6 @@ declare module 'nuxt/schema' {
      * @see https://www.npmjs.com/package/@nuxt/telemetry
      */
     ["telemetry"]?: typeof import("@nuxt/telemetry").default extends NuxtModule<infer O, unknown, boolean> ? Partial<O> : Record<string, any>
-    modules?: (undefined | null | false | NuxtModule<any> | string | [NuxtModule | string, Record<string, any>] | ["@nuxtjs/tailwindcss", Exclude<NuxtConfig["tailwindcss"], boolean>] | ["@tresjs/nuxt", Exclude<NuxtConfig["tres"], boolean>] | ["@nuxt/devtools", Exclude<NuxtConfig["devtools"], boolean>] | ["@nuxt/telemetry", Exclude<NuxtConfig["telemetry"], boolean>])[],
+    modules?: (undefined | null | false | NuxtModule<any> | string | [NuxtModule | string, Record<string, any>] | ["@nuxtjs/tailwindcss", Exclude<NuxtConfig["tailwindcss"], boolean>] | ["@tresjs/nuxt", Exclude<NuxtConfig["tres"], boolean>] | ["@vite-pwa/nuxt", Exclude<NuxtConfig["pwa"], boolean>] | ["@nuxt/devtools", Exclude<NuxtConfig["devtools"], boolean>] | ["@nuxt/telemetry", Exclude<NuxtConfig["telemetry"], boolean>])[],
   }
 }

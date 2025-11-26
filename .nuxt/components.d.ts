@@ -14,6 +14,7 @@ type HydrationStrategies = {
 type LazyComponent<T> = (T & DefineComponent<HydrationStrategies, {}, {}, {}, {}, {}, {}, { hydrated: () => void }>)
 
 
+export const PWAInstall: typeof import("../components/PWAInstall.vue")['default']
 export const Sidebar: typeof import("../components/sidebar.vue")['default']
 export const NuxtWelcome: typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']
 export const NuxtLayout: typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
@@ -154,6 +155,14 @@ export const UnrealBloom: typeof import("@tresjs/post-processing")['UnrealBloom'
 export const VignettePmndrs: typeof import("@tresjs/post-processing")['VignettePmndrs']
 export const TresCanvas: typeof import("../node_modules/@tresjs/nuxt/dist/runtime/TresCanvas.client.vue")['default']
 export const TresCanvas: typeof import("../node_modules/@tresjs/nuxt/dist/runtime/TresCanvas.server.vue")['default']
+export const VitePwaManifest: typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/VitePwaManifest")['default']
+export const NuxtPwaManifest: typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/VitePwaManifest")['default']
+export const NuxtPwaAssets: typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/NuxtPwaAssets")['default']
+export const PwaAppleImage: typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/nuxt4/PwaAppleImage")['default']
+export const PwaAppleSplashScreenImage: typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/nuxt4/PwaAppleSplashScreenImage")['default']
+export const PwaFaviconImage: typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/nuxt4/PwaFaviconImage")['default']
+export const PwaMaskableImage: typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/nuxt4/PwaMaskableImage")['default']
+export const PwaTransparentImage: typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/nuxt4/PwaTransparentImage")['default']
 export const NuxtPage: typeof import("../node_modules/nuxt/dist/pages/runtime/page")['default']
 export const NoScript: typeof import("../node_modules/nuxt/dist/head/runtime/components")['NoScript']
 export const Link: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Link']
@@ -165,6 +174,7 @@ export const Head: typeof import("../node_modules/nuxt/dist/head/runtime/compone
 export const Body: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
 export const NuxtIsland: typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']
 export const NuxtRouteAnnouncer: typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']
+export const LazyPWAInstall: LazyComponent<typeof import("../components/PWAInstall.vue")['default']>
 export const LazySidebar: LazyComponent<typeof import("../components/sidebar.vue")['default']>
 export const LazyNuxtWelcome: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']>
 export const LazyNuxtLayout: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']>
@@ -305,6 +315,14 @@ export const LazyUnrealBloom: LazyComponent<typeof import("@tresjs/post-processi
 export const LazyVignettePmndrs: LazyComponent<typeof import("@tresjs/post-processing")['VignettePmndrs']>
 export const LazyTresCanvas: LazyComponent<typeof import("../node_modules/@tresjs/nuxt/dist/runtime/TresCanvas.client.vue")['default']>
 export const LazyTresCanvas: LazyComponent<typeof import("../node_modules/@tresjs/nuxt/dist/runtime/TresCanvas.server.vue")['default']>
+export const LazyVitePwaManifest: LazyComponent<typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/VitePwaManifest")['default']>
+export const LazyNuxtPwaManifest: LazyComponent<typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/VitePwaManifest")['default']>
+export const LazyNuxtPwaAssets: LazyComponent<typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/NuxtPwaAssets")['default']>
+export const LazyPwaAppleImage: LazyComponent<typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/nuxt4/PwaAppleImage")['default']>
+export const LazyPwaAppleSplashScreenImage: LazyComponent<typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/nuxt4/PwaAppleSplashScreenImage")['default']>
+export const LazyPwaFaviconImage: LazyComponent<typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/nuxt4/PwaFaviconImage")['default']>
+export const LazyPwaMaskableImage: LazyComponent<typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/nuxt4/PwaMaskableImage")['default']>
+export const LazyPwaTransparentImage: LazyComponent<typeof import("../node_modules/@vite-pwa/nuxt/dist/runtime/components/nuxt4/PwaTransparentImage")['default']>
 export const LazyNuxtPage: LazyComponent<typeof import("../node_modules/nuxt/dist/pages/runtime/page")['default']>
 export const LazyNoScript: LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['NoScript']>
 export const LazyLink: LazyComponent<typeof import("../node_modules/nuxt/dist/head/runtime/components")['Link']>

@@ -155,6 +155,9 @@
         </NuxtLink>
       </div>
     </div>
+
+    <!-- PWA Install Prompt -->
+    <PWAInstall />
   </div>
 </template>
 

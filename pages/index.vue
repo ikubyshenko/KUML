@@ -123,8 +123,8 @@ onMounted(() => {
   })
 })
 useSeoMeta({
-  title: 'Главная - AI CENTER - Kozybaev University',
-  description: 'AI CENTER - мир, где технологии становятся продолжением твоего разума.',
+  title: 'Главная - KUML - Kozybaev University',
+  description: 'KUML - мир, где технологии становятся продолжением твоего разума.',
 })
 </script>
 <style scoped>
