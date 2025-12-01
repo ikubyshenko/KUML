@@ -35,12 +35,6 @@
           >
             Смотреть проекты
           </button>
-          <a
-            href="/changelog"
-            class="border-2 border-cyan-600 text-cyan-600 hover:bg-cyan-600 hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 text-lg"
-          >
-            История обновлений
-          </a>
         </div>
       </div>
     </section>
