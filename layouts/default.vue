@@ -11,7 +11,7 @@
                 src="/assets/images/image.png"
                 class="w-full h-full object-contain drop-shadow-sm"
                 alt="AI Center Logo"
-            >
+              >
             </a>
           </div>
 
@@ -61,24 +61,24 @@
           <!-- Mobile Menu Button -->
           <div class="relative lg:hidden">
             <button
-                @click="toggleMenu"
-                class="p-3 rounded-xl bg-gray-50 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 flex items-center justify-center"
+              @click="toggleMenu"
+              class="p-3 rounded-xl bg-gray-50 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 flex items-center justify-center"
             >
               <div class="relative w-6 h-6">
                 <!-- Верхняя линия -->
                 <span
-                    class="absolute left-0 w-6 h-0.5 bg-gray-600 rounded-full transition-all duration-300 origin-center"
-                    :class="showMenu ? 'rotate-45 top-3' : 'top-1'"
+                  class="absolute left-0 w-6 h-0.5 bg-gray-600 rounded-full transition-all duration-300 origin-center"
+                  :class="showMenu ? 'rotate-45 top-3' : 'top-1'"
                 ></span>
                 <!-- Средняя линия -->
                 <span
-                    class="absolute left-0 w-6 h-0.5 bg-gray-600 rounded-full transition-all duration-300 origin-center"
-                    :class="showMenu ? 'opacity-0' : 'top-3'"
+                  class="absolute left-0 w-6 h-0.5 bg-gray-600 rounded-full transition-all duration-300 origin-center"
+                  :class="showMenu ? 'opacity-0' : 'top-3'"
                 ></span>
                 <!-- Нижняя линия -->
                 <span
-                    class="absolute left-0 w-6 h-0.5 bg-gray-600 rounded-full transition-all duration-300 origin-center"
-                    :class="showMenu ? '-rotate-45 top-3' : 'top-5'"
+                  class="absolute left-0 w-6 h-0.5 bg-gray-600 rounded-full transition-all duration-300 origin-center"
+                  :class="showMenu ? '-rotate-45 top-3' : 'top-5'"
                 ></span>
               </div>
             </button>
@@ -86,8 +86,8 @@
             <!-- Выплывающее меню -->
             <transition name="grow">
               <div
-                  v-if="showMenu"
-                  class="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-lg border border-gray-200 p-4 z-50"
+                v-if="showMenu"
+                class="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-lg border border-gray-200 p-4 z-50"
               >
                 <nav class="space-y-3">
                   <NuxtLink to="/" class="modal-link" @click="closeMenu">Главная</NuxtLink>
@@ -102,18 +102,19 @@
     </header>
 
     <!-- Main Content -->
-    <main class="pt-20 min-h-screen px-6 lg:px-24 pb-20 lg:pb-0">
+    <main class="pt-20 min-h-screen px-6 lg:px-24 pb-[calc(20px+env(safe-area-inset-bottom,0px))] lg:pb-0">
       <slot />
     </main>
 
     <!-- Mobile Bottom Navigation -->
-    <div class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-200 lg:hidden">
-      <div class="flex items-center justify-around py-2">
+    <div class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-200 lg:hidden pb-[env(safe-area-inset-bottom,0px)]">
+      <div class="flex items-center justify-around py-2 px-6">
         <!-- Home -->
         <NuxtLink to="/" class="flex flex-col items-center justify-center w-12 h-12" @click="closeMenu">
           <div class="w-10 h-10 sm:w-48 sm:h-14 transition-all duration-300 ease-out hover:scale-105">
             <img
-                src="/assets/images/home.svg"
+              src="/assets/images/home.svg"
+              alt="Home"
             >
           </div>
         </NuxtLink>
@@ -122,7 +123,8 @@
         <NuxtLink to="/feed" class="flex flex-col items-center justify-center w-12 h-12" @click="closeMenu">
           <div class="w-10 h-10 sm:w-48 sm:h-14 transition-all duration-300 ease-out hover:scale-105">
             <img
-                src="/assets/images/feed.svg"
+              src="/assets/images/feed.svg"
+              alt="Feed"
             >
           </div>
         </NuxtLink>
@@ -131,7 +133,8 @@
         <NuxtLink to="/admin/login.vue" class="flex flex-col items-center justify-center w-12 h-12" @click="closeMenu">
           <div class="w-10 h-10 sm:w-48 sm:h-14 transition-all duration-300 ease-out hover:scale-105">
             <img
-                src="/assets/images/plus.svg"
+              src="/assets/images/plus.svg"
+              alt="Add"
             >
           </div>
         </NuxtLink>
@@ -140,16 +143,18 @@
         <NuxtLink to="/schedule" class="flex flex-col items-center justify-center w-12 h-12" @click="closeMenu">
           <div class="w-10 h-10 sm:w-48 sm:h-14 transition-all duration-300 ease-out hover:scale-105">
             <img
-                src="/assets/images/schedule.svg"
+              src="/assets/images/schedule.svg"
+              alt="Schedule"
             >
           </div>
         </NuxtLink>
 
         <!-- Profile -->
         <NuxtLink to="/users/login" class="flex flex-col items-center justify-center w-12 h-12" @click="closeMenu">
-          <div class="w-10 h-10 sm:w-48 sm:h-14 transition-all duration-300 ease-out hover:scale-105 " >
+          <div class="w-10 h-10 sm:w-48 sm:h-14 transition-all duration-300 ease-out hover:scale-105" >
             <img
-                src="/assets/images/profile.svg"
+              src="/assets/images/profile.svg"
+              alt="Profile"
             >
           </div>
         </NuxtLink>
