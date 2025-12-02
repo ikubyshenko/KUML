@@ -7,7 +7,7 @@
         </svg>
       </div>
       <div class="pwa-install-text">
-        <h3 class="text-lg font-semibold text-gray-900">Установить AI CENTER?</h3>
+        <h3 class="text-lg font-semibold text-gray-900">Установить KUML?</h3>
         <p class="text-sm text-gray-600 mt-1">Установите приложение для лучшего опыта работы</p>
       </div>
       <div class="pwa-install-buttons">

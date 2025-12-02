@@ -6,7 +6,7 @@
       <div class="absolute inset-0 z-0 w-full h-full">
         <img
           src="/assets/images/bgULK.png"
-          alt="AI Center Background"
+          alt="KUML Background"
           class="w-full h-full object-cover opacity-10"
         />
       </div>
@@ -26,7 +26,7 @@
           История обновлений платформы
         </p>
         <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-12 scroll-animate">
-          Следите за последними улучшениями, новыми функциями и изменениями в AI CENTER
+          Следите за последними улучшениями, новыми функциями и изменениями в KUML
         </p>
         <div class="scroll-animate flex flex-col sm:flex-row gap-4 justify-center items-center">
           <button
@@ -35,12 +35,6 @@
           >
             Смотреть обновления
           </button>
-          <a
-            href="/feed"
-            class="border-2 border-cyan-600 text-cyan-600 hover:bg-cyan-600 hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 text-lg"
-          >
-            Назад к проектам
-          </a>
         </div>
       </div>
     </section>
@@ -51,7 +45,7 @@
       <div class="absolute inset-0 z-0 w-full h-full">
         <img
           src="/assets/images/bgULK.png"
-          alt="AI Center Background"
+          alt="KUML Background"
           class="w-full h-full object-cover opacity-5"
         />
       </div>
@@ -63,7 +57,7 @@
             История <span class="text-cyan-600">изменений</span>
           </h2>
           <p class="text-xl text-gray-600 mt-6 max-w-3xl mx-auto scroll-animate">
-            Все значимые обновления платформы AI CENTER в хронологическом порядке
+            Все значимые обновления платформы KUML в хронологическом порядке
           </p>
         </div>
 
@@ -259,8 +253,8 @@ onMounted(() => {
 })
 
 useSeoMeta({
-  title: 'Changelog - AI CENTER - Kozybaev University',
-  description: 'AI CENTER - история обновлений и улучшений платформы.',
+  title: 'Changelog - KUML - Kozybaev University',
+  description: 'KUML - история обновлений и улучшений платформы.',
 })
 </script>
 

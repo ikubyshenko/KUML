@@ -10,7 +10,7 @@
               <img
                 src="/assets/images/image.png"
                 class="w-full h-full object-contain drop-shadow-sm"
-                alt="AI Center Logo"
+                alt="KUML Logo"
             >
             </a>
           </div>
@@ -31,31 +31,12 @@
                 <nav class="space-y-2">
                   <NuxtLink to="/schedule" class="dropdown-link">Расписание</NuxtLink>
                   <NuxtLink to="/feed" class="dropdown-link">Проекты</NuxtLink>
-                  <NuxtLink to="/changelog" class="dropdown-link">Changelog</NuxtLink>
                   <NuxtLink to="/tasks" class="dropdown-link">Задания</NuxtLink>
                 </nav>
               </div>
             </div>
-
+            <NuxtLink to="/add" class="nav-link">Выложить проект</NuxtLink> 
             <NuxtLink to="/contact" class="nav-link">Контакты</NuxtLink>
-
-            <!-- Профиль Dropdown -->
-            <div class="relative group">
-              <button class="nav-link flex items-center">
-                Профиль
-                <svg class="w-4 h-4 ml-1 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                </svg>
-              </button>
-              <div class="absolute top-full right-0 mt-2 w-48 bg-white rounded-2xl shadow-lg border border-gray-200 p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
-                <nav class="space-y-2">
-                  <NuxtLink to="/users/profile" class="dropdown-link">Мой профиль</NuxtLink>
-                  <NuxtLink to="/settings" class="dropdown-link">Настройки</NuxtLink>
-                  <NuxtLink to="/achievements" class="dropdown-link">Достижения</NuxtLink>
-                  <NuxtLink to="/users/login" class="dropdown-link text-red-600 hover:text-red-700">Войти</NuxtLink>
-                </nav>
-              </div>
-            </div>
           </nav>
 
           <!-- Mobile Menu Button -->
@@ -128,7 +109,7 @@
         </NuxtLink>
 
         <!-- Add/Create -->
-        <NuxtLink to="/admin/login.vue" class="flex flex-col items-center justify-center w-12 h-12" @click="closeMenu">
+        <NuxtLink to="/add" class="flex flex-col items-center justify-center w-12 h-12" @click="closeMenu">
           <div class="w-10 h-10 sm:w-48 sm:h-14 transition-all duration-300 ease-out hover:scale-105">
             <img
                 src="/assets/images/plus.svg"
@@ -146,10 +127,10 @@
         </NuxtLink>
 
         <!-- Profile -->
-        <NuxtLink to="/users/login" class="flex flex-col items-center justify-center w-12 h-12" @click="closeMenu">
+        <NuxtLink to="/contact" class="flex flex-col items-center justify-center w-12 h-12" @click="closeMenu">
           <div class="w-10 h-10 sm:w-48 sm:h-14 transition-all duration-300 ease-out hover:scale-105 " >
             <img
-                src="/assets/images/profile.svg"
+                src="/assets/images/contact.svg"
             >
           </div>
         </NuxtLink>

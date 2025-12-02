@@ -334,7 +334,7 @@ onMounted(() => {
 })
 
 useSeoMeta({
-  title: 'Расписание курса - AI CENTER - Kozybaev University',
+  title: 'Расписание курса - KUML - Kozybaev University',
   description: '10 недель интенсивного обучения от основ веба до полноценных AI-приложений в Центре Искусственного Интеллекта',
 })
 </script>

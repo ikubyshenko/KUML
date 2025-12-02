@@ -1,4 +1,7 @@
 export default defineNuxtConfig({
+  serverMiddleware: [
+    { path: '/api', handler: '~/server/middleware/database.js' }
+  ],
   compatibilityDate: '2025-07-15',
   tres: {
     glsl: true,

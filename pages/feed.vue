@@ -6,7 +6,7 @@
       <div class="absolute inset-0 z-0 w-full h-full">
         <img
           src="/assets/images/bgULK.png"
-          alt="AI Center Background"
+          alt="KUML Background"
           class="w-full h-full object-cover opacity-10"
         />
       </div>
@@ -26,7 +26,7 @@
           Проекты наших учеников
         </p>
         <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-12 scroll-animate">
-          Здесь собраны лучшие работы студентов AI CENTER, созданные в процессе обучения
+          Здесь собраны лучшие работы студентов KUML, созданные в процессе обучения
         </p>
         <div class="scroll-animate flex flex-col sm:flex-row gap-4 justify-center items-center">
           <button
@@ -45,7 +45,7 @@
       <div class="absolute inset-0 z-0 w-full h-full">
         <img
           src="/assets/images/bgULK.png"
-          alt="AI Center Background"
+          alt="KUML Background"
           class="w-full h-full object-cover opacity-5"
         />
       </div>
@@ -98,11 +98,11 @@
               <div class="flex justify-between items-center">
                 <div class="flex space-x-4 text-gray-500">
                   <button class="flex items-center space-x-1 hover:text-cyan-600 transition-colors">
-                    <span>👍</span>
+                    <span></span>
                     <span>{{ post.likes }}</span>
                   </button>
                   <button class="flex items-center space-x-1 hover:text-cyan-600 transition-colors">
-                    <span>💬</span>
+                    <span></span>
                     <span>{{ post.comments }}</span>
                   </button>
                 </div>
@@ -126,7 +126,7 @@
             target="_blank"
             class="bg-cyan-600 hover:bg-cyan-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg text-lg inline-block"
           >
-            Присоединиться к AI CENTER
+            Присоединиться к KUML
           </a>
         </div>
       </div>
@@ -148,83 +148,27 @@ const scrollToProjects = () => {
 
 const posts = [
   {
-    text: "Оглавление",
+    text: "Сайт KUML",
     authorInitials: "ИК",
     author: "Илья Кубышенко",
     date: "17 ноября 2025",
     title: "Разработка сайта для KUML",
     description: "Современный веб-сайт для презентации курсов и проектов KUML с адаптивным дизайном.",
     tags: ["Web Development", "Nuxt.js", "Tailwind CSS"],
-    likes: 24,
-    comments: 8,
     link: "#",
     status: "Завершен"
   },
   {
-    text: "Оглавление",
+    text: "Urbathon AI",
     authorInitials: "ИК",
     author: "Илья Кубышенко",
-    date: "17 ноября 2025",
-    title: "Разработка сайта для KUML",
-    description: "Современный веб-сайт для презентации курсов и проектов KUML с адаптивным дизайном.",
-    tags: ["Web Development", "Nuxt.js", "Tailwind CSS"],
-    likes: 24,
-    comments: 8,
-    link: "#",
+    date: "30 ноября 2025",
+    title: "Нейросеть для автоматизации домашних дел",
+    description: "AI-модель, помогающая управлять бытовыми задачами и оптимизировать повседневные процессы. Проект был создан в рамках проекта для Urbathon",
+    tags: ["Web Development", "Nuxt.js", "Grok AI"],
+    link: "https://github.com/ikubyshenko/urbathon",
     status: "Завершен"
-  },
-  {
-    text: "Оглавление",
-    authorInitials: "ИК",
-    author: "Илья Кубышенко",
-    date: "17 ноября 2025",
-    title: "Разработка сайта для KUML",
-    description: "Современный веб-сайт для презентации курсов и проектов KUML с адаптивным дизайном.",
-    tags: ["Web Development", "Nuxt.js", "Tailwind CSS"],
-    likes: 24,
-    comments: 8,
-    link: "#",
-    status: "Завершен"
-  },
-  {
-    text: "Оглавление",
-    authorInitials: "ИК",
-    author: "Илья Кубышенко",
-    date: "17 ноября 2025",
-    title: "Разработка сайта для KUML",
-    description: "Современный веб-сайт для презентации курсов и проектов KUML с адаптивным дизайном.",
-    tags: ["Web Development", "Nuxt.js", "Tailwind CSS"],
-    likes: 24,
-    comments: 8,
-    link: "#",
-    status: "Завершен"
-  },
-  {
-    text: "Оглавление",
-    authorInitials: "ИК",
-    author: "Илья Кубышенко",
-    date: "17 ноября 2025",
-    title: "Разработка сайта для KUML",
-    description: "Современный веб-сайт для презентации курсов и проектов KUML с адаптивным дизайном.",
-    tags: ["Web Development", "Nuxt.js", "Tailwind CSS"],
-    likes: 24,
-    comments: 8,
-    link: "#",
-    status: "Завершен"
-  },
-  {
-    text: "Оглавление",
-    authorInitials: "ИК",
-    author: "Илья Кубышенко",
-    date: "17 ноября 2025",
-    title: "Разработка сайта для KUML",
-    description: "Современный веб-сайт для презентации курсов и проектов KUML с адаптивным дизайном.",
-    tags: ["Web Development", "Nuxt.js", "Tailwind CSS"],
-    likes: 24,
-    comments: 8,
-    link: "#",
-    status: "Завершен"
-  },
+  }
 ]
 
 onMounted(() => {
@@ -242,8 +186,8 @@ onMounted(() => {
 })
 
 useSeoMeta({
-  title: 'Проекты - AI CENTER - Kozybaev University',
-  description: 'AI CENTER - проекты наших учеников, созданные в процессе обучения.',
+  title: 'Проекты - KUML - Kozybaev University',
+  description: 'KUML - проекты наших учеников, созданные в процессе обучения.',
 })
 </script>
 
