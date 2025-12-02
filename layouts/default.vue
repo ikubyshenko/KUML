@@ -31,53 +31,12 @@
                 <nav class="space-y-2">
                   <NuxtLink to="/schedule" class="dropdown-link">Расписание</NuxtLink>
                   <NuxtLink to="/feed" class="dropdown-link">Проекты</NuxtLink>
-                  <NuxtLink to="/tasks" class="dropdown-link">Задания</NuxtLink>
                 </nav>
               </div>
             </div>
             <NuxtLink to="/add" class="nav-link">Выложить проект</NuxtLink> 
             <NuxtLink to="/contact" class="nav-link">Контакты</NuxtLink>
           </nav>
-
-          <!-- Mobile Menu Button -->
-          <div class="relative lg:hidden">
-            <button
-                @click="toggleMenu"
-                class="p-3 rounded-xl bg-gray-50 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 flex items-center justify-center"
-            >
-              <div class="relative w-6 h-6">
-                <!-- Верхняя линия -->
-                <span
-                    class="absolute left-0 w-6 h-0.5 bg-gray-600 rounded-full transition-all duration-300 origin-center"
-                    :class="showMenu ? 'rotate-45 top-3' : 'top-1'"
-                ></span>
-                <!-- Средняя линия -->
-                <span
-                    class="absolute left-0 w-6 h-0.5 bg-gray-600 rounded-full transition-all duration-300 origin-center"
-                    :class="showMenu ? 'opacity-0' : 'top-3'"
-                ></span>
-                <!-- Нижняя линия -->
-                <span
-                    class="absolute left-0 w-6 h-0.5 bg-gray-600 rounded-full transition-all duration-300 origin-center"
-                    :class="showMenu ? '-rotate-45 top-3' : 'top-5'"
-                ></span>
-              </div>
-            </button>
-
-            <!-- Выплывающее меню -->
-            <transition name="grow">
-              <div
-                  v-if="showMenu"
-                  class="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-lg border border-gray-200 p-4 z-50"
-              >
-                <nav class="space-y-3">
-                  <NuxtLink to="/" class="modal-link" @click="closeMenu">Главная</NuxtLink>
-                  <NuxtLink to="/materials" class="modal-link" @click="closeMenu">Материалы</NuxtLink>
-                  <NuxtLink to="/contact" class="modal-link" @click="closeMenu">Связь с нами</NuxtLink>
-                </nav>
-              </div>
-            </transition>
-          </div>
         </div>
       </div>
     </header>
