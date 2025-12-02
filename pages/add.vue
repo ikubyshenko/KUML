@@ -265,7 +265,7 @@
                   </div>
                   
                   <p class="text-gray-600 mb-4">
-                    После согласования всех деталей ваш контент будет добавлен на платформу AI CENTER
+                    После согласования всех деталей ваш контент будет добавлен на платформу KUML
                   </p>
                   
                   <div class="mb-4">
@@ -284,7 +284,7 @@
                       </li>
                       <li class="flex items-start text-gray-600">
                         <span class="text-cyan-600 mr-2 mt-1">•</span>
-                        <span>Публикация в разделе Feed или Changelog</span>
+                        <span>Публикация в разделе Feed</span>
                       </li>
                       <li class="flex items-start text-gray-600">
                         <span class="text-cyan-600 mr-2 mt-1">•</span>
